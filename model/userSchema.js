@@ -30,6 +30,8 @@ const userSchema = new Schema ({
         type : Date
     }
 
+}, {
+    timestamps : true
 });
 
 const userModel = mongoose.model("user", userSchema);
