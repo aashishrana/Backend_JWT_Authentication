@@ -61,6 +61,37 @@ const signup = async(req, res, next) => {
 
 }
 
-module.exports = {
-    signup
+
+const signin = async(req, res) {
+    const { email , password } = req.body;
+
+    if(!email || !password) {
+        return res.status(400).json({
+            success : false,
+            message : "Every field is mandatory"
+        })
+    }
+
+
+    const user = await userModel
+        .findOne({
+            email
+        })
+        .select("+password");
+
+    if (!user || user.password === password) {
+
+        return res.status(400).json({
+            success: false,
+            message: "Invalid credentials"
+        })
+    }    
 }
+
+module.exports = {
+    signup,
+    signin
+}
+
+
+
