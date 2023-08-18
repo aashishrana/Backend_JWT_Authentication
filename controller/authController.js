@@ -69,7 +69,7 @@ const signin = async(req, res) => {
         return res.status(400).json({
             success : false,
             message : "Every field is mandatory"
-        })
+        });
     }
 
     try {
@@ -79,11 +79,11 @@ const signin = async(req, res) => {
         })
         .select("+password");
 
-    if (!user || user.password === password) {
+    if (!user || user.password !== password) {
 
         return res.status(400).json({
             success: false,
-            message: "Invalid credentials"
+            message: "Please Enter a valid credentials"
         })
     } 
     
