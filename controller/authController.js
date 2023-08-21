@@ -83,7 +83,7 @@ const signin = async(req, res) => {
 
     if (!user || !(await bcrypt.compare(password , user.password))) {  // compare encrypted password 
 
-        return res.status(400).json({
+        return res.status(400).json({  // now in database password save as in hashing format
             success: false,
             message: "Please Enter a valid credentials"
         })
